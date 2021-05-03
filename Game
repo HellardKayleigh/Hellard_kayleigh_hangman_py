@@ -1,5 +1,5 @@
 #pull in word list
-from words get word_list
+from words import word_list
 #Import radom
 import random
 #get random word
