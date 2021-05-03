@@ -1,0 +1,47 @@
+#pull in word list
+from word_list get word_selection
+#Import radom
+import random
+#get random word
+def random_word(word_list):
+    list_length = len(word_list)
+    list_number = random.randint(0,list_length)
+    return word_list[list_number]
+#select word from list
+selected_word = random_word(word_list)
+#x = length of word
+word_length = len(selected_word)
+#y = 7 guesses
+guess_left = 7
+#picked word = * times x
+picked_word = '*' * word_length
+#print goes remaining and astrix word
+print(picked_word)
+print("You have " + str(guess_left) + " guesses")
+#ask for guess and make lower case
+def ask_for():
+    guess = input("Please enter your next guess: ")
+    return guess.lower()
+#asking loop
+while guess_left != 0 and picked_word != selected_word :
+    guess_letter = ask_for()
+    picked_word_new = picked_word
+    #for loop. if guess is in word replace
+    for i in range(len(selected_word)):
+        if selected_word[i] == guess_letter :
+            picked_word_new = picked_word_new[:i] + guess_letter + picked_word_new[i+1:]
+    #compare words to see if any correct letters
+    if picked_word_new == picked_word :
+        guess_left = guess_left - 1
+    else :
+        picked_word = picked_word_new
+    print(picked_word)
+    print("You have " + str(guess_left) + " goes remaining")
+#is it right yet?
+if guess_left == 0 :
+    print("you lose")
+#check if there are still missing letters
+if picked_word == selected_word :
+    print("congratulations you win")
+#ask again
+#end of game
